@@ -1,0 +1,39 @@
+function Pell 1
+    // Spremi prvi argument u lokalnu varijablu 0
+    push argument 0
+    pop local 0
+
+    // Provjeri je li lokalna varijabla manja od 2 (baza rekurzije)
+    push local 0
+    push constant 2
+    lt
+    if-goto BASE_CASE
+    goto RECURSIVE_CASE
+
+    // Ako smo u bazi rekurzije, vrati trenutnu vrijednost
+    label BASE_CASE
+    push local 0
+    return
+
+    //2*P_n-1
+    label RECURSIVE_CASE
+    push local 0
+    push constant 1
+    sub
+    call pell.Pell 1
+    pop local 1
+    push local 1
+    push local 1
+    add
+    
+    //P_n-2
+    push local 0
+    push constant 2
+    sub
+    call pell.Pell 1
+
+    //2*P_n-1 + P_n-2
+    add
+
+    //Vrati rezultat
+    return

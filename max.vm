@@ -1,0 +1,54 @@
+function Max 3
+
+  // Spremi prvi argument u lokalnu varijablu 0
+  push argument 0
+  pop local 0  
+
+  // Spremi drugi argument u lokalnu varijablu 1
+  push argument 1
+  pop local 1  
+
+  // Spremi treći argument u lokalnu varijablu 2
+  push argument 2
+  pop local 2  
+
+  // Usporedi prva dva argumenta
+  push local 0
+  push local 1
+  gt  
+  if-goto GREATER_THAN_EQUAL1  
+
+  // Ako prvi argument nije veći od drugog, usporedi drugi i treći argument
+  push local 1
+  push local 2
+  gt  
+  if-goto GREATER_THAN_EQUAL2  
+
+  // Ako ni drugi argument nije veći od trećeg, završi s trećim argumentom kao maksimumom
+  push local 2
+  goto END  
+
+label GREATER_THAN_EQUAL1
+  // Ako je prvi argument veći od drugog, usporedi prvi i treći argument
+  push local 0
+  push local 2
+  gt  
+  if-goto GREATER_THAN_EQUAL3  
+
+  // Ako ni prvi argument nije veći od trećeg, završi s trećim argumentom kao maksimumom
+  push local 2
+  goto END  
+
+label GREATER_THAN_EQUAL2
+  // Ako je drugi argument veći od trećeg, završi s drugim argumentom kao maksimumom
+  push local 1
+  goto END  
+
+label GREATER_THAN_EQUAL3
+  // Ako je treći argument veći od prva dva, završi s trećim argumentom kao maksimumom
+  push local 0
+  goto END  
+
+label END
+  // Vrati maksimum
+  return
